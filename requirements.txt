@@ -1,0 +1,16 @@
+asgiref==3.7.2
+Babel==2.13.1
+colorama==0.4.6
+Django==4.2.7
+django-money==3.4.1
+django-phonenumber-field==7.2.0
+django-phonenumbers==1.0.1
+mysql-connector-python==8.2.0
+mysqlclient==2.2.0
+phonenumbers==8.13.26
+protobuf==4.25.1
+py-moneyed==3.0
+pytz==2023.3.post1
+sqlparse==0.4.4
+typing_extensions==4.8.0
+tzdata==2023.3

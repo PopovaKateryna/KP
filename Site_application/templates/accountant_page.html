@@ -1,0 +1,133 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block pages_title %}
+     Бухгалтерія
+{% endblock %}
+    
+{% block pages_content %}
+    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <body style="background-color: #FFEAD8;">
+
+    <div>
+        <p class="accountant_form_header_text">Додати інформацію про зарплатню</p>
+    </div>
+    <form class="accountant_form" name="add_salary_form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p class="accountant_form_text" align="left"s><strong>Працівник</strong></p>
+
+        <div class="accountant_form_input">
+            <input class="form_input_value" id="selected" list="users" name="user_ipn" autoComplete="on" required> 
+            <datalist id="users">
+            {% for el in workers_info %}    
+                <option id="worker_opt" value={{ el.user_ipn }}  data-user_id_vl={{el.id}}  data-hourly_rate_vl={{ el.hourly_rate | cut:'UAH' }}>{{ el }} ({{ el.hourly_rate }})</option>
+            {% endfor %} 
+            </datalist>
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>Місяць та рік</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="month" name="month_and_year" required>
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>Відпрацьовано годин</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="working_hours" required min="0">
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>Премія</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="bonus_payments" min="0">
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>Лікарняні</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="hospital_payments" min="0">
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>Відпускні</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="vacation_payments" min="0">
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>ПДФО</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="pdfo_tax" required min="0" disabled>
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>ЄСФ</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="social_tax" required min="0" disabled>
+        </div>
+        
+        <p class="accountant_form_text" align="left"s><strong>Військовий збір</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="military_tax" required min="0" disabled>
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>Дохід до сплати податків</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="gross_income" required min="0" disabled>
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>Податки</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="taxes_amount" required min="0" disabled>
+        </div>
+
+        <p class="accountant_form_text" align="left"s><strong>Чистий дохід</strong></p>
+        <div class="accountant_form_input">
+            <input class="accountant_form_input_value" type="number" name="net_income" required min="0" disabled>
+        </div>
+
+        <span style="display: inline;">
+            <button class="accountant_form_reset_button_style" id="accountant_form_reset_button" type="reset">Очистити</button>
+            <button class="accountant_form_calculate_button_style" id="accountant_form_calculate_button" onclick="CalculateFunction()" type="button">Обрахувати</button>
+            <button class="accountant_form_submit_button_style" id="accountant_form_submit_button" onclick="ShowResultFunction()" type="submit">Зберегти</button>
+        </span>
+    </form> 
+
+    <script>
+        function CalculateFunction() {
+
+            var val = $('#selected').val()
+            var hourly_rate_value = $('#users option').filter(function() {return this.value == val;}).data('hourly_rate_vl');
+            var user_id_value = $('#users option').filter(function() {return this.value == val;}).data('user_id_vl');
+
+
+            let bonus_payment_val = document.forms["add_salary_form"]["bonus_payments"].value;
+            let hospital_payments_val = document.forms["add_salary_form"]["hospital_payments"].value;
+            let vacation_payment_val = document.forms["add_salary_form"]["vacation_payments"].value;
+            let gross_income_val = +(document.forms["add_salary_form"]["working_hours"].value * hourly_rate_value) + +bonus_payment_val + +hospital_payments_val + +vacation_payment_val;
+
+            let pdfo_tax_val = gross_income_val / 100 * parseFloat('{{ pdfo_tax_value }}');
+            let social_tax_val = gross_income_val / 100 * parseFloat('{{ social_tax_value }}');
+            let military_tax_val = gross_income_val / 100 * parseFloat('{{ military_tax_value }}');
+            let all_tax_val = +pdfo_tax_val + +social_tax_val + +military_tax_val;
+            let net_income_val = +gross_income_val - +all_tax_val;
+            
+     
+            document.forms["add_salary_form"]["gross_income"].value = gross_income_val.toFixed(2);
+            document.forms["add_salary_form"]["net_income"].value = net_income_val.toFixed(2);
+            document.forms["add_salary_form"]["pdfo_tax"].value = pdfo_tax_val.toFixed(2);
+            document.forms["add_salary_form"]["social_tax"].value = social_tax_val.toFixed(2);
+            document.forms["add_salary_form"]["military_tax"].value = military_tax_val.toFixed(2);
+            document.forms["add_salary_form"]["taxes_amount"].value = all_tax_val.toFixed(2);
+        }
+    </script>
+
+    <script>
+        function ShowResultFunction(){
+            let worker_vl = document.forms["add_salary_form"]["selected"].value
+            let data_vl = document.forms["add_salary_form"]["month_and_year"].value
+            let working_hours_vl = document.forms["add_salary_form"]["working_hours"].value  
+
+            if (worker_vl != '' & data_vl != '' & working_hours_vl != ''){
+                Swal.fire({icon: 'success', title: 'Інформація про зарплатню збережена!'})}
+        };
+    </script>
+
+{% endblock %}

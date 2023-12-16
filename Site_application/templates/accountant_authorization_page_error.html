@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block pages_title %}
+    Авторизація
+{% endblock %}
+
+{% block pages_content %}
+    <div>
+        <p class="authentication_form_header_text">Вхід для бухгалтерів</p>
+    </div>
+    <form class="authentication_form" name="authentication_form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p class="authentication_form_text" align="left"s><strong>Логін</strong></p>
+        <div class="authentication_form_input">
+            <input class="authentication_form_input_value" type="text" name="username" required maxlength="100">
+        </div>
+        <p class="authentication_form_text" align="left"s><strong>Пароль</strong></p>
+        <div class="authentication_form_input">
+            <input class="authentication_form_input_value" type="password" name="password" required maxlength="100">
+        </div>
+        <div>
+            <button class="authentication_form_submit_button" id="auth_submit_button" type="submit">Вхід</button>
+        </div>
+    </form>
+    <div>
+        <p class="income_page_error_message">Невірний логін чи пароль!</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block pages_title %}
+    Доходи клієнтів
+{% endblock %}
+
+{% block pages_content %}
+    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <div align="center">
+        <table class="table_style">
+            <caption></caption>
+            <thead>
+                <tr align="center">
+                    <th>Компанія</th>
+                    <th>Ставка</th>
+                    <th>Місяць</th>
+                    <th>Відпрацьовано годин</th>
+                    <th>Премія</th>
+                    <th>Лікарняні</th>
+                    <th>Відпускні</th>
+                    <th>До сплати податків</th>
+                    <th>Податки</th>
+                    <th>Чистий дохід</th>
+                </tr>
+            </thead>
+    {% for el in payments_info %}        
+            <tbody>
+                <tr align="center">
+                    <td>{{ el.user_work.company}}</td>
+                    <td>{{ el.user_work.hourly_rate | cut:'UAH' }} {{ el.user_work.hourly_rate_currency}}</td>
+                    <td>{{ el.month_and_year | date:'F' }} {{ el.month_and_year | date:'Y' }}</td>
+                    <td>{{ el.working_hours }}</td>
+                    <td>{{ el.bonus_payments | cut:'UAH' }} {{ el.bonus_payments_currency }}</td>
+                    <td>{{ el.hospital_payments | cut:'UAH' }} {{ el.hospital_payments_currency }}</td>
+                    <td>{{ el.vacation_payments | cut:'UAH' }} {{ el.vacation_payments_currency }}</td>
+                    <td>{{ el.gross_income | cut:'UAH' }} {{ el.gross_income_currency }}</td>
+                    <td>{{ el.taxes_amount | cut:'UAH' }} {{ el.taxes_amount_currency }}</td>
+                    <td>{{ el.net_income | cut:'UAH' }} {{ el.net_income_currency }}</td>
+                </tr> 
+            </tbody>
+    {% endfor %} 
+        </table>
+    </div>
+    
+    <div class="sum_style" align="center">
+        <span>
+           <p style="display: inline;";><strong>Працівник: </strong></p>
+           <p style="display: inline;"; id="worker_fullname"></p>
+        </span>
+        <div>
+            <br>
+            <p><strong>Відпрацьовано годин:</strong>  {{ sum_of_working_hours.sum.working_hours__sum }}</p>
+        </div>
+        <div>
+            <p><strong>Сплачені податки:</strong>  {{ sum_of_taxes.sum.taxes_amount__sum }} UAH</p>
+        </div>
+        <div>
+            <p><strong>Прибуток до сплати податків:</strong>  {{ sum_of_gross_income.sum.gross_income__sum }} UAH</p>
+        </div>
+        <div>
+            <p><strong>Прибуток після сплати податків:</strong>  {{ sum_of_net_income.sum.net_income__sum }} UAH</p>
+        </div>
+    </div>
+ 
+    <script>
+        let username_vl = '{{ worker_fullname }}';
+            document.getElementById("worker_fullname").innerHTML = username_vl;
+    </script>
+
+{% endblock %}

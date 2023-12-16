@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block pages_title %}
+    Доходи клієнтів
+{% endblock %}
+{% block pages_content %}
+    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <form class="form" name="users_information_form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p class="form_text" align="left"s><strong>Введіть інформацію про працівника (ПІБ та номер ІПН):</strong></p>
+        <div class="form_input">
+            <input class="form_input_value" id="selected" list="users" name="user_ipn" autoComplete="on" required> 
+            <datalist id="users">
+            {% for el in workers_info %}    
+                <option value={{ el.user_ipn }}>{{ el }}</option>
+            {% endfor %} 
+            </datalist>
+        </div>
+        <div>
+            <button class="form_submit_button" id="user_info_submit_button" type="submit">Знайти інформацію</button>
+        </div>
+    </form>
+{% endblock %}

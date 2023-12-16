@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ua">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block pages_title %}
+            {% endblock %}
+        </title>
+        <link rel="shortcut icon" href="{% static 'img/shortcut_icon.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+
+        <header>
+            <div class="header_wrapper">
+                <div class="header_icon">
+                    <a href="http://127.0.0.1:8000/authorization"><img src="{% static 'img/header_icon.png' %}" alt="Header icon" width="120px"></a>
+                </div>
+                <div class="header_site_name">
+                    <h1>ІНФОРМАЦІЙНА СИСТЕМА<br>автоматизації нарахування<br>заробітної плати</h1>
+                </div>
+                {% for el in site_info %}
+                    <div class="header_schedule_and_contacts">
+                        <h2>Call-центр:</h2>
+                        <p>{{ el.working_days_schedule }}</p>
+                        <p>{{ el.saturday_schedule }}</p>
+                        <p>{{ el.sunday_schedule }}</p>
+                    </div>
+                {% endfor %}
+        </header>
+        
+        <nav class="nav_menu">
+            <ul>
+                <li><a href="/">Головна</a></li>
+                <li><a href="income">Доходи</a></li>
+                <li><a href="contacts">Контакти</a></li>
+            </ul>
+        </nav>
+
+        <div class="sticky_fotter_wrapper">
+            <div class="main_content">
+                {% block pages_content %}
+                {% endblock %}
+            </div>
+
+        <footer class="footer">
+            <p>Інформаційна система автоматизації нарахування заробітної плати Ⓒ 2012 - 2023</p>
+        </footer>
+        </div>
+    </body>
+</html>

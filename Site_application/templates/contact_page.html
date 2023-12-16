@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block pages_title %}
+    Контакти
+{% endblock %}
+
+{% block pages_content %}
+    <div class="contacts_wraper">
+        <div class="contacts">
+            {% for el in site_info %}
+                <div>
+                    <h2>Центр підтримки клієнтів:</h2>
+                    <p><strong>Тел:</strong> {{ el.site_landline_phone_number }}</p>
+                    <p><strong>Моб:</strong> {{ el.site_phone_number_1 }}</p>
+                    <p><strong>Моб:</strong> {{ el.site_phone_number_2 }}</p>
+                    <p><strong>Ел. пошта:</strong> {{ el.site_email }}</p>
+                    <p><strong>Адреса:</strong> {{ el.address }}</p>
+                </div>
+            {% endfor %}
+            <div>
+                <img src="{% static 'img/call_center_icon.jpg' %}" alt="Call-center image" width="407px">
+            </div>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.2990474143808!2d24.03249857652121!3d49.8368382714815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add69107a0f17%3A0xd3ff2c191cc07ea4!2z0LLRg9C70LjRhtGPINCG0LLQsNC90LAg0KTRgNCw0L3QutCwLCAxMSwg0JvRjNCy0ZbQsiwg0JvRjNCy0ZbQstGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCA3OTAwMA!5e0!3m2!1suk!2sua!4v1701557647020!5m2!1suk!2sua" width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,487 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*,*:before,*:after{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav, footer, header, aside{display: block;}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+button, textarea{font-family: inherit;}
+
+button{cursor: pointer;}
+button::-moz-focus-inner{padding:0; border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ui li{list-style: none;}
+img{vertical-align: top;}
+
+h1, h2, h3, h4, h5, h6{font-size: inherit; font-weight: 400;}
+
+
+/* -------------------- Footer, Header, NavBar -------------------- */
+
+
+.header_wrapper{
+    display: flex;
+    text-align: center;
+}
+  
+.header_icon{
+    height: 100%;
+    width: 14%;
+    margin: 10px;
+    margin-left: 17%;
+    text-align: right;
+}
+
+.header_schedule_and_contacts{
+    height: 100%;
+    width: 14%;
+    margin: 10px;
+    margin-right: 17%;
+}
+
+.header_schedule_and_contacts h2{
+    color: #EF8706;
+    font-family: sans-serif;
+    font-size: 25px;
+    margin-bottom: 8px;
+    text-align: left;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.header_schedule_and_contacts p{
+    color: #EF8706;
+    font-family: sans-serif;
+    font-size: 20px;
+    text-align: left;
+    font-style: italic;
+    margin-bottom: 4px;
+}
+
+.header_site_name{
+    height: 100%;
+    width: 60%;
+    margin: 10px;
+    padding-top: 10px;
+    font-family: sans-serif;
+    font-size: 30px;
+    color: #EF8706;
+}
+
+.nav_menu{
+    background-color: #EF8706;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.nav_menu a{
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: white;
+    display: inline-block;
+    padding-inline: 70px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    margin: 0px 40px;
+}
+
+.nav_menu li{
+    display: inline-block;
+}
+
+.nav_menu a:hover{
+    background-color: rgb(22, 105, 201);
+}
+
+.sticky_fotter_wrapper {
+    height: 75.8%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main_content {
+    flex: auto;
+}
+  
+.footer {
+    flex-shrink: 0;
+    margin-top: 2.6%;
+    background-color: #231F20;
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    padding: 12px;
+}
+
+
+/* -------------------- Main page -------------------- */
+
+
+.main_text{
+    text-align: center;
+    font-family: sans-serif;
+    color: #041018;
+    font-size: 24px;
+}
+
+.hr{
+    align-items: center;
+    border: 1px solid rgb(191, 196, 191);
+    border-radius: 5px;
+    width: 53%;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.head_about_company{
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 53%;
+    font-family: sans-serif;
+    color: #041018;
+    font-size: 20px;
+    line-height: 130%;
+}
+
+.about_company{
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    width: 53%;
+    font-family: sans-serif;
+    color: #041018;
+    font-size: 17px;
+    line-height: 130%;
+}
+
+.about_company li{
+    margin-left: 20px;
+    padding-top: 10px;
+}
+
+.accounting_image{
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+/* -------------------- Contacts page -------------------- */
+
+
+.contacts_wraper{
+    display: flex;
+    text-align: center;
+}
+  
+.contacts{
+    height: 100%;
+    width: 50%;
+    text-align: right;
+    margin-right: 40px;
+}
+
+.contacts h2{
+    color: #267BB4;
+    font-family: sans-serif;
+    font-size: 25px;
+    text-decoration: bold;
+    margin-bottom: 10px;
+}
+
+.contacts p{
+    font-family: sans-serif;
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.contacts img{
+    text-align: right;
+    margin-top: 50px;
+}
+
+.map{
+    height: 100%;
+    width: 50%;
+    text-align: left;
+    margin-left: 40px;
+}
+
+
+/* -------------------- Income pages -------------------- */
+
+
+.table_style{
+    margin: auto;
+    width: 65%;
+    border-radius: 1px;
+    border-collapse: collapse;
+	border-spacing: 0;
+	border: 0;
+}
+
+.table_style th{
+    font-family: sans-serif;
+    font-size: 17px;
+    color: #FFFFFF;
+    background-color: #27AE60;
+    padding: 6px;
+    width: 115px;
+}
+
+.table_style td{
+    background-color: #eeeded;
+    padding: 7px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+}
+
+.sum_style{
+    margin: auto;
+    width: 65%;
+    text-align: left; 
+    font-size: large;
+    padding-top: 20px;
+}
+
+.sum_style p{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    padding-bottom: 16px;
+}
+
+.form{
+    width: 17%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: sans-serif;
+    color: #041018;
+    font-size: 17px;
+}
+
+.form_text{
+    margin-top: 0px;
+    padding-top: 5px;
+}
+
+.form_input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px 0;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form_input_value{
+    width: 98%;
+    padding: 1%;
+}
+
+.form_submit_button{
+    width: 50%;
+    text-align: center;
+    margin-top: 15px;
+    padding: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #27AE60;
+    border: 2px solid #a5a4a4;
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.income_page_error_message{
+    width: 17%;
+    margin: 0 auto;
+    margin-top: 15px;
+    text-align: center;
+    font-family: sans-serif;
+    color: red;
+    font-size: 17px;
+}
+
+
+/* -------------------- Authentication page -------------------- */
+
+
+.authentication_form_header_text{
+    width: 17%;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-family: sans-serif;
+    color: rgb(2, 2, 2);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.authentication_form{
+    width: 17%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: sans-serif;
+    color: #041018;
+    font-size: 17px;
+}
+
+.authentication_form_text{
+    margin-top: 20px;
+    padding-top: 5px;
+}
+
+.authentication_form_input{
+    padding-top: 3px;
+    padding-bottom: 5px;
+    margin: 5px 0;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.authentication_form_input_value{
+    width: 98%;
+    padding: 1%;
+}
+
+.authentication_form_submit_button{
+    width: 30%;
+    text-align: center;
+    margin-top: 15px;
+    padding: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #275dae;
+    border: 2px solid #a5a4a4;
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* -------------------- Accountant page -------------------- */
+
+
+.accountant_form_header_text{
+    width: 18%;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-family: sans-serif;
+    color: rgb(2, 2, 2);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.accountant_form{
+    width: 17%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: sans-serif;
+    color: #041018;
+    font-size: 14px;
+}
+
+.accountant_form_text{
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+.accountant_form_input{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 5px 0;
+    margin-top: 5px;
+    border: 1.3px solid #ccc;
+    border-radius: 2px;
+    ::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+}
+
+.accountant_form_input_value{
+    width: 98%;
+    padding: 1%;
+}
+
+.accountant_form_reset_button_style{
+    width: 30%;
+    text-align: center;
+    margin-top: 15px;
+    padding: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: red;
+    border: 1.5px solid #686666;
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.accountant_form_calculate_button_style{
+    width: 30%;
+    text-align: center;
+    margin-top: 15px;
+    padding: 4px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(238, 179, 71);
+    border: 1.5px solid #686666;
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.accountant_form_submit_button_style{
+    width: 30%;
+    text-align: center;
+    margin-top: 15px;
+    padding: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: green;
+    border: 1.5px solid #686666;
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
